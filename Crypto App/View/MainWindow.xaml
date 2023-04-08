@@ -60,18 +60,24 @@
                             </Style>
                         </Grid.Resources>
                         <Label Grid.Row="0" Height="26" Width="194">Выберите алгоритм шифрования</Label>
-                        <ComboBox Grid.Column="1" Grid.Row="0" Height="40" VerticalAlignment="Top">
+                        <ComboBox x:Name="signCypherCombobox" Grid.Column="1" Grid.Row="0" Height="40" VerticalAlignment="Top">
                             <ComboBoxItem>RSA</ComboBoxItem>
                             <ComboBoxItem>EGSA</ComboBoxItem>
                             <ComboBoxItem>DSA</ComboBoxItem>
                         </ComboBox>
                         <Label Grid.Row="1" Height="26" Width="98">Введите данные</Label>
-                        <TextBox Grid.Column="1" Grid.Row="1"></TextBox>
+                        <TextBox x:Name="signDataTextbox" Grid.Column="1" Grid.Row="1"></TextBox>
                         <Label Grid.Row="2" Height="26" Width="106">Кто подписывает</Label>
-                        <TextBox Grid.Column="1" Grid.Row="2" ></TextBox>
+                        <TextBox x:Name="signNameTextBox" Grid.Column="1" Grid.Row="2" ></TextBox>
                     </Grid>
-                    <Button Style="{StaticResource MaterialDesignRaisedButton}" Canvas.Top="169" Canvas.Left="106" Width="194" Height="34" Cursor="Hand">Подписать</Button>
-                    <Label Canvas.Left="30" Canvas.Top="236" Height="65"/>
+                    <Button x:Name="signButton" 
+                            Style="{StaticResource MaterialDesignRaisedButton}" 
+                            Canvas.Top="169" 
+                            Canvas.Left="106"
+                            Width="194"
+                            Height="34"
+                            Cursor="Hand">Подписать</Button>
+                    <Label x:Name="signResultsLabel" Canvas.Left="30" Canvas.Top="236" Height="65"/>
                 </Canvas>
             </TabItem>
             <TabItem Header="Проверка">
@@ -107,18 +113,23 @@
                             </Style>
                         </Grid.Resources>
                         <Label Grid.Row="0" Height="26" Width="194">Выберите алгоритм шифрования</Label>
-                        <ComboBox Grid.Column="1" Grid.Row="0" Height="40" VerticalAlignment="Top">
+                        <ComboBox x:Name="checkCypherCombobox" Grid.Column="1" Grid.Row="0" Height="40" VerticalAlignment="Top">
                             <ComboBoxItem>RSA</ComboBoxItem>
                             <ComboBoxItem>EGSA</ComboBoxItem>
                             <ComboBoxItem>DSA</ComboBoxItem>
                         </ComboBox>
                         <Label Grid.Row="1" Height="26">Введите хэш документа (?)</Label>
-                        <TextBox Grid.Column="1" Grid.Row="1"></TextBox>
+                        <TextBox x:Name="checkHashTextbox" Grid.Column="1" Grid.Row="1"></TextBox>
                         <Label Grid.Row="2" Height="26">Введите закрытый ключ</Label>
-                        <TextBox Grid.Column="1" Grid.Row="2" ></TextBox>
+                        <TextBox x:Name="checkKeyTextbox" Grid.Column="1" Grid.Row="2" ></TextBox>
                     </Grid>
-                    <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Canvas.Top="169" Canvas.Left="106" Width="194" Height="34" Cursor="Hand">Проверить</Button>
-                    <Label Canvas.Left="30" Canvas.Top="236" Height="65"/>
+                    <Button x:Name="checkButton" 
+                            Style="{StaticResource MaterialDesignRaisedAccentButton}" 
+                            Canvas.Top="169" 
+                            Canvas.Left="106"
+                            Width="194"
+                            Height="34" Cursor="Hand">Проверить</Button>
+                    <Label x:Name="checkResultsLabel" Canvas.Left="30" Canvas.Top="236" Height="65"/>
                 </Canvas>
             </TabItem>
         </TabControl>
