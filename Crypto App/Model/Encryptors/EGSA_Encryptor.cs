@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Crypto_App.ViewModel
+namespace Crypto_App.Model.Encryptors
 {
-    internal class ViewModel
+    internal class EGSA_Encryptor
     {
     }
 }

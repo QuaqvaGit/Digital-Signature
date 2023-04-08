@@ -74,9 +74,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\Encryptors\DSA_Encryptor.cs" />
     <Compile Include="Model\Encryptors\IEncryptor.cs" />
+    <Compile Include="Model\Encryptors\RSA_Encryptor.cs" />
     <Compile Include="Model\Signers\Signer.cs" />
-    <Compile Include="ViewModel\ViewModel.cs" />
+    <Compile Include="ViewModel\CheckViewModel.cs" />
+    <Compile Include="ViewModel\SignViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

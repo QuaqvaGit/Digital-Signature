@@ -76,7 +76,7 @@
                             Canvas.Left="106"
                             Width="194"
                             Height="34"
-                            Cursor="Hand">Подписать</Button>
+                            Cursor="Hand" Click="signButton_Click">Подписать</Button>
                     <Label x:Name="signResultsLabel" Canvas.Left="30" Canvas.Top="236" Height="65"/>
                 </Canvas>
             </TabItem>
@@ -128,7 +128,7 @@
                             Canvas.Top="169" 
                             Canvas.Left="106"
                             Width="194"
-                            Height="34" Cursor="Hand">Проверить</Button>
+                            Height="34" Cursor="Hand" Click="checkButton_Click">Проверить</Button>
                     <Label x:Name="checkResultsLabel" Canvas.Left="30" Canvas.Top="236" Height="65"/>
                 </Canvas>
             </TabItem>

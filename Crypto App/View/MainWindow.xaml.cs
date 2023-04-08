@@ -25,7 +25,12 @@ namespace Crypto_App
             InitializeComponent();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void signButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.SignViewModel viewModel = new ViewModel.ViewModel();
+        }
+
+        private void checkButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
