@@ -1,0 +1,26 @@
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\bin\Debug\Crypto App.exe.config
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\bin\Debug\Crypto App.exe
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\bin\Debug\Crypto App.pdb
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\obj\Debug\Crypto App.csproj.AssemblyReference.cache
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\obj\Debug\Crypto App.csproj.SuggestedBindingRedirects.cache
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\obj\Debug\View\MainWindow.g.cs
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\obj\Debug\App.g.cs
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\obj\Debug\Crypto App_MarkupCompile.cache
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\obj\Debug\Crypto App_MarkupCompile.lref
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\obj\Debug\View\MainWindow.baml
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\obj\Debug\Crypto App.g.resources
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\obj\Debug\Crypto_App.Properties.Resources.resources
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\obj\Debug\Crypto App.csproj.GenerateResource.cache
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\obj\Debug\Crypto App.csproj.CoreCompileInputs.cache
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\obj\Debug\Crypto App.exe
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\obj\Debug\Crypto App.pdb
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\bin\Debug\MaterialDesignColors.dll
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\bin\Debug\MaterialDesignColors.pdb
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\bin\Debug\Microsoft.Xaml.Behaviors.xml
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\obj\Debug\App.baml
+C:\Users\sanek\OneDrive\Рабочий стол\Учёба\Университет\4 семак\Алг структуры\Crypto App\Crypto App\obj\Debug\Crypto App.csproj.CopyComplete

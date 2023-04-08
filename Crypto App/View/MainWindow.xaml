@@ -4,14 +4,123 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Crypto_App"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
         mc:Ignorable="d"
-        Title="Crypto App" Height="450" Width="800">
-    <TabControl>
-        <TabItem Header="Зашифровать" Width="395">
-            
-        </TabItem>
-        <TabItem Header="Расшифровать" Width="395">
-            
-        </TabItem>
-    </TabControl>
+        Icon="../Assets/Icons/main.ico"
+        Title="Электронная подпись" Height="429" Width="405"
+        ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="RoundBorders" TargetType="Border">
+            <Setter Property="CornerRadius" Value="10"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <TabControl>
+            <TabControl.Template>
+                <ControlTemplate TargetType="TabControl">
+                    <DockPanel>
+                        <UniformGrid IsItemsHost="True" Rows="1" DockPanel.Dock="Top"></UniformGrid>
+                        <ContentPresenter ContentSource="SelectedContent"></ContentPresenter>
+                    </DockPanel>
+                </ControlTemplate>
+            </TabControl.Template>
+
+            <TabItem Header="Подпись">
+                <Canvas Margin ="0 20 0 20">
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Center" Width="395">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="207">
+                            </ColumnDefinition>
+                            <ColumnDefinition Width="173"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.Resources>
+                            <Style TargetType="{x:Type Label}">
+                                <Setter Property="Margin" Value="0 0 0 10"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                            </Style>
+                            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBoxBase}">
+                                <Setter Property="Margin" Value="0 0 0 10"/>
+                                <Setter Property="Height" Value="40"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                            </Style>
+                            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
+                                <Setter Property="Margin" Value="0 0 0 10"/>
+                                <Setter Property="Height" Value="40"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="Padding" Value="15 0 15 0"/>
+                            </Style>
+                        </Grid.Resources>
+                        <Label Grid.Row="0" Height="26" Width="194">Выберите алгоритм шифрования</Label>
+                        <ComboBox Grid.Column="1" Grid.Row="0" Height="40" VerticalAlignment="Top">
+                            <ComboBoxItem>RSA</ComboBoxItem>
+                            <ComboBoxItem>EGSA</ComboBoxItem>
+                            <ComboBoxItem>DSA</ComboBoxItem>
+                        </ComboBox>
+                        <Label Grid.Row="1" Height="26" Width="98">Введите данные</Label>
+                        <TextBox Grid.Column="1" Grid.Row="1"></TextBox>
+                        <Label Grid.Row="2" Height="26" Width="106">Кто подписывает</Label>
+                        <TextBox Grid.Column="1" Grid.Row="2" ></TextBox>
+                    </Grid>
+                    <Button Style="{StaticResource MaterialDesignRaisedButton}" Canvas.Top="169" Canvas.Left="106" Width="194" Height="34" Cursor="Hand">Подписать</Button>
+                    <Label Canvas.Left="30" Canvas.Top="236" Height="65"/>
+                </Canvas>
+            </TabItem>
+            <TabItem Header="Проверка">
+                <Canvas Margin ="0 20 0 20">
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Center" Width="395">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="207">
+                            </ColumnDefinition>
+                            <ColumnDefinition Width="173"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.Resources>
+                            <Style TargetType="{x:Type Label}">
+                                <Setter Property="Margin" Value="0 0 0 10"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                            </Style>
+                            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBoxBase}">
+                                <Setter Property="Margin" Value="0 0 0 10"/>
+                                <Setter Property="Height" Value="40"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                            </Style>
+                            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
+                                <Setter Property="Margin" Value="0 0 0 10"/>
+                                <Setter Property="Height" Value="40"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="Padding" Value="15 0 15 0"/>
+                            </Style>
+                        </Grid.Resources>
+                        <Label Grid.Row="0" Height="26" Width="194">Выберите алгоритм шифрования</Label>
+                        <ComboBox Grid.Column="1" Grid.Row="0" Height="40" VerticalAlignment="Top">
+                            <ComboBoxItem>RSA</ComboBoxItem>
+                            <ComboBoxItem>EGSA</ComboBoxItem>
+                            <ComboBoxItem>DSA</ComboBoxItem>
+                        </ComboBox>
+                        <Label Grid.Row="1" Height="26">Введите хэш документа (?)</Label>
+                        <TextBox Grid.Column="1" Grid.Row="1"></TextBox>
+                        <Label Grid.Row="2" Height="26">Введите закрытый ключ</Label>
+                        <TextBox Grid.Column="1" Grid.Row="2" ></TextBox>
+                    </Grid>
+                    <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Canvas.Top="169" Canvas.Left="106" Width="194" Height="34" Cursor="Hand">Проверить</Button>
+                    <Label Canvas.Left="30" Canvas.Top="236" Height="65"/>
+                </Canvas>
+            </TabItem>
+        </TabControl>
+    </Grid>
 </Window>
