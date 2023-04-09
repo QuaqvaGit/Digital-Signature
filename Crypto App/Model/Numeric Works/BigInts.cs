@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Numerics;
 using System.Security.Cryptography;
 
@@ -51,7 +52,7 @@ namespace Crypto_App.Model.Numeric_Works
         public static BigInteger RandBigInt(int bits)
         {
             RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
-            byte[] bytes = new byte[bits / 8 + 1];
+            byte[] bytes = new byte[bits/2];
             rng.GetBytes(bytes);
             bytes[bytes.Length - 1] = 0;
             BigInteger result = new BigInteger(bytes);
@@ -65,10 +66,29 @@ namespace Crypto_App.Model.Numeric_Works
         /// <returns>Первообразный корень числа</returns>
         public static BigInteger GeneratePrimitiveRoot(BigInteger p)
         {
-            BigInteger g = 0;
-            while (g == 1 || g == p - 1 || BigInteger.ModPow(g, (p-1)/2, p) == 1)
-                g = RandBigInt((int)Math.Floor(BigInteger.Log(p, 2)));
-            return g;
+            List<BigInteger> factorization = new List<BigInteger>();
+            BigInteger phi = p - 1, n = phi;
+            for (int i = 2; i * i <= n; ++i)
+                if (n % i == 0)
+                {
+                    factorization.Add(i);
+                    while (n % i == 0)
+                        n /= i;
+                }
+            if (n > 1)
+                factorization.Add(n);
+
+            for (int res = 2; res <= p; ++res)
+            {
+                bool ok = true;
+                for (int i = 0; i < factorization.Count && ok; ++i)
+                    ok &= BigInteger.ModPow(res, phi / factorization[i], p) != 1;
+                if (ok) return res;
+            }
+            return -1;
         }
+
+        public static int GetBits(BigInteger n) => (int)Math.Floor(BigInteger.Log(BigInteger.Abs(n), 2)); 
+
     }
 }

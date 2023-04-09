@@ -75,7 +75,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\Signers\DSA_Encryptor.cs" />
+    <Compile Include="Model\Signers\DSA_Signer.cs" />
     <Compile Include="Model\Signers\EGSA_Signer.cs" />
     <Compile Include="Model\Signers\ISigner.cs" />
     <Compile Include="Model\Signers\RSA_Signer.cs" />

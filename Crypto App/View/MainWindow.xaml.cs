@@ -46,16 +46,9 @@ namespace Crypto_App
                     message = checkMessageTextbox.Text,
                     sign = checkSignTextbox.Text;
                 ViewModel.CheckViewModel viewModel = new ViewModel.CheckViewModel(encryptorType, message, sign, publicKey);
-                if (viewModel.GetResults())
-                {
-                    checkResultsLabel.Foreground = Brushes.Green;
-                    checkResultsLabel.Content = "Подпись корректна";
-                }
-                else
-                {
-                    checkResultsLabel.Foreground = Brushes.Red;
-                    checkResultsLabel.Content = "Подпись некорректна";
-                }
+                bool succeed;
+                checkResultsLabel.Content = viewModel.GetResults(out succeed);
+                checkResultsLabel.Foreground = succeed ? Brushes.Green : Brushes.Red;
             }
             catch
             {

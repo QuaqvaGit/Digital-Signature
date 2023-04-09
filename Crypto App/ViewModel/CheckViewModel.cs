@@ -11,33 +11,53 @@ namespace Crypto_App.ViewModel
         ISigner<string, BigInteger> _signer;
         BigInteger _hash;
         List<BigInteger> keys;
-        public CheckViewModel(int typeOfEncryptor, string message, string sign, string publicKey)
+
+        List<BigInteger> ParseInput(string input)
         {
-            switch (typeOfEncryptor)
-            {
-                case 0:
-                    _signer = new RSA_Signer();
-                    break;
-                case 1:
-                    _signer = new EGSA_Signer();
-                    break;
-                case 2:
-                    //  _encryptor = new DSA_Encryptor();
-                    break;
-            }
-            _hash = message.GetHashCode();
-            var _sign = BigInteger.Parse(sign);
-            keys = publicKey
+            return input
                 .Split(new char[] { '(', ')', ',', ' ' })
                 .Where(x => x.Length > 0)
                 .Select(x => BigInteger.Parse(x))
                 .ToList();
-            keys.Insert(0, _sign);
         }
 
-        public bool GetResults()
+        public CheckViewModel(int typeOfEncryptor, string message, string sign, string publicKey)
         {
-            return _signer.CheckSign(_hash, keys);
+            _hash = message.GetHashCode();
+            keys = ParseInput(publicKey);
+
+            switch (typeOfEncryptor)
+            {
+                case 0:
+                    {
+                        _signer = new RSA_Signer();
+                        BigInteger _sign = BigInteger.Parse(sign);
+                        keys.Insert(0, _sign);
+                        break;
+                    }
+                case 1:
+                    {
+                        _signer = new EGSA_Signer();
+                        List<BigInteger> _sign = ParseInput(sign);
+                        _sign.AddRange(keys);
+                        keys = _sign;
+                    break;
+                    }
+                case 2:
+                    {
+                        _signer = new DSA_Signer(message);
+                        List<BigInteger> _sign = ParseInput(sign);
+                        keys.AddRange(_sign);
+                        break;
+                    }
+            }
+            
+        }
+
+        public string GetResults(out bool succeed)
+        {
+            succeed = _signer.CheckSign(_hash, keys);
+            return succeed?"Подпись корректна":"Подпись некорректна";
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Crypto_App.Model.Encryptors
 {
     public class EGSA_Signer: ISigner<string, BigInteger>
     {
-        static int MAX_BITS = 2048;
+        static int MAX_BITS = 512;
         public List<BigInteger> PrivateKey { get; }
         public List<BigInteger> PublicKey { get; }
 

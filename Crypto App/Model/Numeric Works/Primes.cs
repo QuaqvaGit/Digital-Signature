@@ -50,7 +50,7 @@ namespace Crypto_App.Model.Numeric_Works
         /// </summary>
         /// <param name="miller_rabin_candidate">Проверяемое число</param>
         /// <returns>Провалило число тест или нет</returns>
-        static bool IsMillerRabinPassed(BigInteger miller_rabin_candidate)
+        public static bool IsMillerRabinPassed(BigInteger miller_rabin_candidate)
         {
             BigInteger maxDivisionsByTwo = 0;
             BigInteger evenComponent = miller_rabin_candidate - 1;
