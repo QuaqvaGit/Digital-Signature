@@ -48,6 +48,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -74,10 +75,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\Encryptors\DSA_Encryptor.cs" />
-    <Compile Include="Model\Encryptors\IEncryptor.cs" />
-    <Compile Include="Model\Encryptors\RSA_Encryptor.cs" />
-    <Compile Include="Model\Signers\Signer.cs" />
+    <Compile Include="Model\Signers\DSA_Encryptor.cs" />
+    <Compile Include="Model\Signers\EGSA_Encryptor.cs" />
+    <Compile Include="Model\Signers\ISigner.cs" />
+    <Compile Include="Model\Signers\RSA_Signer.cs" />
+    <Compile Include="Model\Numeric Works\BigInts.cs" />
+    <Compile Include="Model\Numeric Works\Primes.cs" />
     <Compile Include="ViewModel\CheckViewModel.cs" />
     <Compile Include="ViewModel\SignViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">

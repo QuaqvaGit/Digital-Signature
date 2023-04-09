@@ -9,7 +9,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         mc:Ignorable="d"
         Icon="../Assets/Icons/main.ico"
-        Title="Электронная подпись" Height="429" Width="405"
+        Title="Электронная подпись" Height="541" Width="405"
         ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="RoundBorders" TargetType="Border">
@@ -77,7 +77,13 @@
                             Width="194"
                             Height="34"
                             Cursor="Hand" Click="signButton_Click">Подписать</Button>
-                    <Label x:Name="signResultsLabel" Canvas.Left="30" Canvas.Top="236" Height="65"/>
+                    <Label x:Name="signResultsLabel" Canvas.Left="10" Canvas.Top="236" Height="191" Width="385" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Label.ContentTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </Label.ContentTemplate>
+                    </Label>
                 </Canvas>
             </TabItem>
             <TabItem Header="Проверка">

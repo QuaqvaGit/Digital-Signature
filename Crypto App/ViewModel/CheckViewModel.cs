@@ -15,7 +15,8 @@ namespace Crypto_App.ViewModel
 
         public bool GetResults(out string message, out string signerName)
         {
-
+            message = signerName = null;
+            return false;
         }
     }
 }

@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+﻿using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Crypto_App
 {
@@ -24,15 +12,55 @@ namespace Crypto_App
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Логика при нажатии кнопки "Подписать" на первой вкладке приложения
+        /// </summary>
         private void signButton_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.SignViewModel viewModel = new ViewModel.ViewModel();
+            //Получить данные из представления
+            int encryptorType = signCypherCombobox.SelectedIndex;
+            string message = signDataTextbox.Text,
+                openKey, privateKey, hash, sign;
+            try
+            {
+                ViewModel.SignViewModel viewModel = new ViewModel.SignViewModel(encryptorType, message);
+                viewModel.GetResults(out openKey, out privateKey, out hash, out sign);
+                //Вывести результат
+                signResultsLabel.Foreground = Brushes.Green;
+                signResultsLabel.Content = $"Готово!\nХеш документа: {hash}\nОткрытый ключ: {openKey}\nЗакрытый ключ: {privateKey}" +
+                    $"\nПодпись: {sign}";
+            }
+            catch
+            {
+                signResultsLabel.Foreground = Brushes.Red;
+                signResultsLabel.Content = "Что-то пошло не так...";
+            }
         }
-
+        /// <summary>
+        /// Логика при нажатии кнопки "Проверить" на второй вкладке приложения
+        /// </summary>
         private void checkButton_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                //Получить данные из представления
+                int encryptorType = checkCypherCombobox.SelectedIndex,
+                    privateKey = int.Parse(checkKeyTextbox.Text),
+                    hash = int.Parse(checkHashTextbox.Text);
+                string message, signedBy;
+                ViewModel.CheckViewModel viewModel = new ViewModel.CheckViewModel(encryptorType, hash, privateKey);
+                //viewModel.GetResults(out message, out signedBy);
+                //Вывести результат
+                //signResultsLabel.Foreground = Brushes.Green;
+                //signResultsLabel.Content = $"Подпись корректна\nСообщение: {message}\nПодписал(а): {signedBy}";
+            }
+            catch
+            {
+                checkResultsLabel.Foreground = Brushes.Red;
+                checkResultsLabel.Content = "Что-то пошло не так...";
+            }
+            
         }
+
     }
 }
