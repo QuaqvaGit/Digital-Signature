@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
 using System.Collections.Generic;
 using Crypto_App.Model.Numeric_Works;
+using System;
 
 namespace Crypto_App.Model.Encryptors
 {
@@ -37,7 +38,7 @@ namespace Crypto_App.Model.Encryptors
         /// <returns>Подпись вида {r, s}</returns>
         public List<BigInteger> Sign(string message)
         {
-            BigInteger hash = message.GetHashCode(),
+            BigInteger hash = Math.Abs(message.GetHashCode()),
                 k = Primes.GetCoprime(2, PublicKey[2] - 2, PublicKey[2] - 1),
                 r = BigInteger.ModPow(PublicKey[1], k, PublicKey[2]),
                 s = (hash - PrivateKey[0] * r) * BigInts.ModInverse(k, PublicKey[2] - 1) % (PublicKey[2] - 1);

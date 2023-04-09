@@ -1,7 +1,6 @@
 ﻿using Crypto_App.Model.Numeric_Works;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
 
 namespace Crypto_App.Model.Encryptors
@@ -16,7 +15,7 @@ namespace Crypto_App.Model.Encryptors
 
             if (generateKeys)
             {
-                BigInteger hash = message.GetHashCode();
+                BigInteger hash = Math.Abs(message.GetHashCode());
                 int bits = BigInts.GetBits(hash);
                 BigInteger q = Primes.GenerateRandomPrime(bits),
                            p = 2 * q + 1;
@@ -42,7 +41,7 @@ namespace Crypto_App.Model.Encryptors
             {
                 k = Primes.GenerateRandomPrime(Primes.random.Next(1, BigInts.GetBits(PublicKey[1])));
                 r = BigInteger.ModPow(PublicKey[2], k, PublicKey[0]) % PublicKey[1];
-                s = BigInts.ModInverse(k, PublicKey[1]) * (message.GetHashCode() + PrivateKey[0] * r);
+                s = BigInts.ModInverse(k, PublicKey[1]) * (Math.Abs(message.GetHashCode()) + PrivateKey[0] * r);
             }
             List<BigInteger> result = new List<BigInteger>();
             result.Add(r);

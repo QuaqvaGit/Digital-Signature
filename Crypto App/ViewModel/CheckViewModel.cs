@@ -3,6 +3,7 @@ using Crypto_App.Model.Encryptors;
 using System.Numerics;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Crypto_App.ViewModel
 {
@@ -23,7 +24,7 @@ namespace Crypto_App.ViewModel
 
         public CheckViewModel(int typeOfEncryptor, string message, string sign, string publicKey)
         {
-            _hash = message.GetHashCode();
+            _hash = Math.Abs(message.GetHashCode());
             keys = ParseInput(publicKey);
 
             switch (typeOfEncryptor)

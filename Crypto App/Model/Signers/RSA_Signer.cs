@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Numerics;
 using Crypto_App.Model.Numeric_Works;
 
@@ -41,7 +42,7 @@ namespace Crypto_App.Model.Encryptors
         /// <returns>Подпись</returns>
         public List<BigInteger> Sign(string message)
         {
-            BigInteger hash = message.GetHashCode();
+            BigInteger hash = Math.Abs(message.GetHashCode());
             BigInteger sign = BigInteger.ModPow(hash, PrivateKey[0], PublicKey[1]);
             List<BigInteger> result = new List<BigInteger>();
             result.Add(sign);
