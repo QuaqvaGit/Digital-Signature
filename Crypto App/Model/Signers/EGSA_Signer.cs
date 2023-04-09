@@ -6,7 +6,7 @@ namespace Crypto_App.Model.Encryptors
 {
     public class EGSA_Signer: ISigner<string, BigInteger>
     {
-        static int MAX_BITS = 512;
+        static int MAX_BITS = 20;
         public List<BigInteger> PrivateKey { get; }
         public List<BigInteger> PublicKey { get; }
 
@@ -15,7 +15,7 @@ namespace Crypto_App.Model.Encryptors
             //Генерация ключей
             BigInteger p = Primes.GenerateRandomPrime(MAX_BITS),
                 g = BigInts.GeneratePrimitiveRoot(p),
-                x = BigInts.RandBigInt(Primes.random.Next(2, MAX_BITS)),
+                x = BigInts.RandBigInt(Primes.random.Next(2, BigInts.GetBits(p))),
                 y = BigInteger.ModPow(g, x, p);
             PublicKey = new List<BigInteger>();
             PublicKey.Add(y);
@@ -35,7 +35,9 @@ namespace Crypto_App.Model.Encryptors
             BigInteger hash = message.GetHashCode(),
                 k = Primes.GetCoprime(2, PublicKey[2] - 2, PublicKey[2] - 1),
                 r = BigInteger.ModPow(PublicKey[1], k, PublicKey[2]),
-                s = (hash - PrivateKey[0] * r) * BigInts.ModInverse(k, PublicKey[2] - 1);
+                s = (hash - PrivateKey[0] * r) * BigInts.ModInverse(k, PublicKey[2] - 1) % (PublicKey[2] - 1);
+            if (s < 0)
+                s += PublicKey[2] - 1;
             List<BigInteger> result = new List<BigInteger>();
             result.Add(r); 
             result.Add(s);
@@ -51,8 +53,8 @@ namespace Crypto_App.Model.Encryptors
         public bool CheckSign(BigInteger hash, List<BigInteger> keys)
         {
             return keys[0] > 0 && keys[0] < keys[4] && keys[1] > 0 && keys[1] < keys[4] - 1
-                && BigInteger.ModPow(BigInteger.ModPow(keys[2], keys[0], keys[4]) * 
-                BigInteger.ModPow(keys[0], keys[1], keys[4]), 1, keys[4]) ==
+                && BigInteger.ModPow(keys[2], keys[0], keys[4]) * 
+                BigInteger.ModPow(keys[0], keys[1], keys[4]) % keys[4] ==
                 BigInteger.ModPow(keys[3], hash, keys[4]);
         }
     }

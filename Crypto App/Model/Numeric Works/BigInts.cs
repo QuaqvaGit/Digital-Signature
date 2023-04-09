@@ -66,26 +66,42 @@ namespace Crypto_App.Model.Numeric_Works
         /// <returns>Первообразный корень числа</returns>
         public static BigInteger GeneratePrimitiveRoot(BigInteger p)
         {
-            List<BigInteger> factorization = new List<BigInteger>();
-            BigInteger phi = p - 1, n = phi;
-            for (int i = 2; i * i <= n; ++i)
-                if (n % i == 0)
-                {
-                    factorization.Add(i);
-                    while (n % i == 0)
-                        n /= i;
-                }
-            if (n > 1)
-                factorization.Add(n);
-
-            for (int res = 2; res <= p; ++res)
+            var phi = p - 1;
+            var factors = Factorize(phi);
+            for (BigInteger g = 2; g < p; g++)
             {
-                bool ok = true;
-                for (int i = 0; i < factorization.Count && ok; ++i)
-                    ok &= BigInteger.ModPow(res, phi / factorization[i], p) != 1;
-                if (ok) return res;
+                bool isPrimitiveRoot = true;
+                foreach (var factor in factors)
+                {
+                    if (BigInteger.ModPow(g, phi / factor, p) == 1)
+                    {
+                        isPrimitiveRoot = false;
+                        break;
+                    }
+                }
+                if (isPrimitiveRoot)
+                {
+                    return g;
+                }
             }
-            return -1;
+            return -1; // первообразный корень не найден
+        }
+        private static List<BigInteger> Factorize(BigInteger n)
+        {
+            var factors = new List<BigInteger>();
+            for (BigInteger i = 2; i * i <= n; i++)
+            {
+                while (n % i == 0)
+                {
+                    factors.Add(i);
+                    n /= i;
+                }
+            }
+            if (n > 1)
+            {
+                factors.Add(n);
+            }
+            return factors;
         }
 
         public static int GetBits(BigInteger n) => (int)Math.Floor(BigInteger.Log(BigInteger.Abs(n), 2)); 

@@ -78,7 +78,7 @@
                                   CanContentScroll="True" 
                                   Canvas.Top="166" 
                                   Height="100" Width="385" HorizontalAlignment="Left" Canvas.Left="10">
-                        <TextBox x:Name="signResultsTextbox" IsReadOnly="True"/>
+                        <TextBox x:Name="signResultsTextbox" TextWrapping="Wrap" IsReadOnly="True"/>
                     </ScrollViewer>
                 </Canvas>
             </TabItem>
