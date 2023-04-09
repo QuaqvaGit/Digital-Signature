@@ -6,7 +6,7 @@ namespace Crypto_App.Model.Encryptors
 {
     public class RSA_Signer : ISigner<string, BigInteger>
     {
-        static int MAX_BITS = 1024;
+        static int MAX_BITS = 512;
         public List<BigInteger> PrivateKey { get; }
         public List<BigInteger> PublicKey { get; }
 
@@ -28,6 +28,7 @@ namespace Crypto_App.Model.Encryptors
             PrivateKey = new List<BigInteger>();
             PrivateKey.Add(d);
         }
+
         /// <summary>
         /// Метод шифрования и подписывания сообщения
         /// </summary>

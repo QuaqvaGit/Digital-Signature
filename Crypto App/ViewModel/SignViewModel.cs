@@ -26,7 +26,7 @@ namespace Crypto_App.ViewModel
             }
             _message = message;
         }
-        string FormKey(List<BigInteger> keys) => "(" + String.Join(" ,", keys) + ")";
+        string FormKey(List<BigInteger> keys) => "(" + String.Join(", ", keys) + ")";
         public bool GetResults(out string openKey, out string privateKey, out string hash, out string sign)
         {
             try

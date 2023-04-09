@@ -8,6 +8,6 @@ namespace Crypto_App.Model
         List<BigInteger> PrivateKey { get; }
         List<BigInteger> PublicKey { get; }
         V Sign(T message);
-        bool CheckSign(V message, List<V> keys);
+        bool CheckSign(V messageHash, List<V> keys);
     }
 }

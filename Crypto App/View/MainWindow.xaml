@@ -9,7 +9,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         mc:Ignorable="d"
         Icon="../Assets/Icons/main.ico"
-        Title="Электронная подпись" Height="541" Width="405"
+        Title="Электронная подпись" Height="371" Width="405"
         ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="RoundBorders" TargetType="Border">
@@ -38,7 +38,6 @@
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid.Resources>
                             <Style TargetType="{x:Type Label}">
@@ -65,25 +64,22 @@
                             <ComboBoxItem>EGSA</ComboBoxItem>
                             <ComboBoxItem>DSA</ComboBoxItem>
                         </ComboBox>
-                        <Label Grid.Row="1" Height="26" Width="98">Введите данные</Label>
+                        <Label Grid.Row="1" Height="26">Введите сообщение</Label>
                         <TextBox x:Name="signDataTextbox" Grid.Column="1" Grid.Row="1"></TextBox>
-                        <Label Grid.Row="2" Height="26" Width="106">Кто подписывает</Label>
-                        <TextBox x:Name="signNameTextBox" Grid.Column="1" Grid.Row="2" ></TextBox>
                     </Grid>
                     <Button x:Name="signButton" 
                             Style="{StaticResource MaterialDesignRaisedButton}" 
-                            Canvas.Top="169" 
+                            Canvas.Top="105" 
                             Canvas.Left="106"
                             Width="194"
                             Height="34"
-                            Cursor="Hand" Click="signButton_Click">Подписать</Button>
-                    <Label x:Name="signResultsLabel" Canvas.Left="10" Canvas.Top="236" Height="191" Width="385" HorizontalAlignment="Left" VerticalAlignment="Center">
-                        <Label.ContentTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding}" TextWrapping="Wrap" />
-                            </DataTemplate>
-                        </Label.ContentTemplate>
-                    </Label>
+                            Cursor="Hand" Click="signButton_Click" HorizontalAlignment="Center" VerticalAlignment="Top">Подписать</Button>
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto"
+                                  CanContentScroll="True" 
+                                  Canvas.Top="166" 
+                                  Height="100" Width="385" HorizontalAlignment="Left" Canvas.Left="10">
+                        <TextBox x:Name="signResultsTextbox" IsReadOnly="True"/>
+                    </ScrollViewer>
                 </Canvas>
             </TabItem>
             <TabItem Header="Проверка">
@@ -95,6 +91,7 @@
                             <ColumnDefinition Width="173"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
@@ -124,18 +121,20 @@
                             <ComboBoxItem>EGSA</ComboBoxItem>
                             <ComboBoxItem>DSA</ComboBoxItem>
                         </ComboBox>
-                        <Label Grid.Row="1" Height="26">Введите хэш документа (?)</Label>
-                        <TextBox x:Name="checkHashTextbox" Grid.Column="1" Grid.Row="1"></TextBox>
-                        <Label Grid.Row="2" Height="26">Введите закрытый ключ</Label>
-                        <TextBox x:Name="checkKeyTextbox" Grid.Column="1" Grid.Row="2" ></TextBox>
+                        <Label Grid.Row="1" Height="26">Введите сообщение</Label>
+                        <TextBox x:Name="checkMessageTextbox" Grid.Column="1" Grid.Row="1"></TextBox>
+                        <Label Grid.Row="2" Height="26">Введите подпись</Label>
+                        <TextBox x:Name="checkSignTextbox" Grid.Column="1" Grid.Row="2" ></TextBox>
+                        <Label Grid.Row="3" Height="26">Введите открытый ключ</Label>
+                        <TextBox x:Name="checkKeyTextbox" Grid.Column="1" Grid.Row="3"></TextBox>
                     </Grid>
                     <Button x:Name="checkButton" 
                             Style="{StaticResource MaterialDesignRaisedAccentButton}" 
-                            Canvas.Top="169" 
+                            Canvas.Top="200" 
                             Canvas.Left="106"
                             Width="194"
-                            Height="34" Cursor="Hand" Click="checkButton_Click">Проверить</Button>
-                    <Label x:Name="checkResultsLabel" Canvas.Left="30" Canvas.Top="236" Height="65"/>
+                            Height="34" Cursor="Hand" Click="checkButton_Click" HorizontalAlignment="Center" VerticalAlignment="Top">Проверить</Button>
+                    <Label x:Name="checkResultsLabel" Canvas.Top="239" Height="28" HorizontalAlignment="Center"/>
                 </Canvas>
             </TabItem>
         </TabControl>

@@ -26,14 +26,14 @@ namespace Crypto_App
                 ViewModel.SignViewModel viewModel = new ViewModel.SignViewModel(encryptorType, message);
                 viewModel.GetResults(out openKey, out privateKey, out hash, out sign);
                 //Вывести результат
-                signResultsLabel.Foreground = Brushes.Green;
-                signResultsLabel.Content = $"Готово!\nХеш документа: {hash}\nОткрытый ключ: {openKey}\nЗакрытый ключ: {privateKey}" +
+                signResultsTextbox.Foreground = Brushes.Green;
+                signResultsTextbox.Text = $"Готово!\nХеш документа: {hash}\nОткрытый ключ: {openKey}\nЗакрытый ключ: {privateKey}" +
                     $"\nПодпись: {sign}";
             }
             catch
             {
-                signResultsLabel.Foreground = Brushes.Red;
-                signResultsLabel.Content = "Что-то пошло не так...";
+                signResultsTextbox.Foreground = Brushes.Red;
+                signResultsTextbox.Text = "Что-то пошло не так...";
             }
         }
         /// <summary>
@@ -44,15 +44,21 @@ namespace Crypto_App
             try
             {
                 //Получить данные из представления
-                int encryptorType = checkCypherCombobox.SelectedIndex,
-                    privateKey = int.Parse(checkKeyTextbox.Text),
-                    hash = int.Parse(checkHashTextbox.Text);
-                string message, signedBy;
-                ViewModel.CheckViewModel viewModel = new ViewModel.CheckViewModel(encryptorType, hash, privateKey);
-                //viewModel.GetResults(out message, out signedBy);
-                //Вывести результат
-                //signResultsLabel.Foreground = Brushes.Green;
-                //signResultsLabel.Content = $"Подпись корректна\nСообщение: {message}\nПодписал(а): {signedBy}";
+                int encryptorType = checkCypherCombobox.SelectedIndex;
+                string publicKey = checkKeyTextbox.Text,
+                    message = checkMessageTextbox.Text,
+                    sign = checkSignTextbox.Text;
+                ViewModel.CheckViewModel viewModel = new ViewModel.CheckViewModel(encryptorType, message, sign, publicKey);
+                if (viewModel.GetResults())
+                {
+                    checkResultsLabel.Foreground = Brushes.Green;
+                    checkResultsLabel.Content = "Подпись корректна";
+                }
+                else
+                {
+                    checkResultsLabel.Foreground = Brushes.Red;
+                    checkResultsLabel.Content = "Подпись некорректна";
+                }
             }
             catch
             {
