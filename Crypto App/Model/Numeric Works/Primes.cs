@@ -18,6 +18,13 @@ namespace Crypto_App.Model.Numeric_Works
             return candidate;
         }
 
+        /// <summary>
+        /// Поиск взаимно простого числа в диапазоне
+        /// </summary>
+        /// <param name="lowerBound">Нижняя граница поиска</param>
+        /// <param name="upperBound">Верхняя граница поиска</param>
+        /// <param name="a">Число, для которого ищется взаимно простое</param>
+        /// <returns>Число, взаимно простое с исходным</returns>
         public static BigInteger GetCoprime(BigInteger lowerBound, BigInteger upperBound, BigInteger a)
         {
             for (BigInteger i = lowerBound; i <= upperBound; i++)
@@ -38,6 +45,11 @@ namespace Crypto_App.Model.Numeric_Works
             return true;
         }
 
+        /// <summary>
+        /// Тест Миллера-Рабина на простое число
+        /// </summary>
+        /// <param name="miller_rabin_candidate">Проверяемое число</param>
+        /// <returns>Провалило число тест или нет</returns>
         static bool IsMillerRabinPassed(BigInteger miller_rabin_candidate)
         {
             BigInteger maxDivisionsByTwo = 0;

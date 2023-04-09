@@ -19,7 +19,7 @@ namespace Crypto_App.ViewModel
                     _signer = new RSA_Signer();
                     break;
                 case 1:
-                    //  _encryptor = new EGSA_Encryptor();
+                    _signer = new EGSA_Signer();
                     break;
                 case 2:
                     //  _encryptor = new DSA_Encryptor();

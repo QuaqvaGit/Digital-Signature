@@ -19,16 +19,13 @@ namespace Crypto_App
         {
             //Получить данные из представления
             int encryptorType = signCypherCombobox.SelectedIndex;
-            string message = signDataTextbox.Text,
-                openKey, privateKey, hash, sign;
+            string message = signDataTextbox.Text;
             try
             {
                 ViewModel.SignViewModel viewModel = new ViewModel.SignViewModel(encryptorType, message);
-                viewModel.GetResults(out openKey, out privateKey, out hash, out sign);
                 //Вывести результат
                 signResultsTextbox.Foreground = Brushes.Green;
-                signResultsTextbox.Text = $"Готово!\nХеш документа: {hash}\nОткрытый ключ: {openKey}\nЗакрытый ключ: {privateKey}" +
-                    $"\nПодпись: {sign}";
+                signResultsTextbox.Text = viewModel.GetResults();
             }
             catch
             {

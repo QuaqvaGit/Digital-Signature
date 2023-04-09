@@ -18,7 +18,7 @@ namespace Crypto_App.ViewModel
                     _signer = new RSA_Signer();
                     break;
                 case 1:
-                  //  _encryptor = new EGSA_Encryptor();
+                    _signer = new EGSA_Signer();
                     break;
                 case 2:
                   //  _encryptor = new DSA_Encryptor();
@@ -27,21 +27,21 @@ namespace Crypto_App.ViewModel
             _message = message;
         }
         string FormKey(List<BigInteger> keys) => "(" + String.Join(", ", keys) + ")";
-        public bool GetResults(out string openKey, out string privateKey, out string hash, out string sign)
+        public string GetResults()
         {
-            try
-            {
-                openKey = FormKey(_signer.PublicKey);
-                privateKey = FormKey(_signer.PrivateKey);
-                hash = _message.GetHashCode().ToString();
-                sign = _signer.Sign(_message).ToString();
-                return true;
-            }
-            catch
-            {
-                openKey = privateKey = hash = sign = null;
-                return false;
-            }
+            var openKey = FormKey(_signer.PublicKey);
+            var privateKey = FormKey(_signer.PrivateKey);
+            var hash = _message.GetHashCode().ToString();
+            var sign = "";
+
+            if (_signer is RSA_Signer)
+                sign = _signer.Sign(_message)[0].ToString();
+            else if (_signer is EGSA_Signer)
+                sign = FormKey(_signer.Sign(_message));
+
+            string result = $"Готово!\nХеш документа: {hash}\nОткрытый ключ: {openKey}\nЗакрытый ключ: {privateKey}" +
+                $"\nПодпись: {sign}";
+            return result;
         }
     }
 }

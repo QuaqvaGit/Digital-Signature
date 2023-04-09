@@ -34,11 +34,13 @@ namespace Crypto_App.Model.Encryptors
         /// </summary>
         /// <param name="message">Шифруемое и подписываемое сообщение</param>
         /// <returns>Подпись</returns>
-        public BigInteger Sign(string message)
+        public List<BigInteger> Sign(string message)
         {
             BigInteger hash = message.GetHashCode();
             BigInteger sign = BigInteger.ModPow(hash, PrivateKey[0], PublicKey[1]);
-            return sign;
+            List<BigInteger> result = new List<BigInteger>();
+            result.Add(sign);
+            return result;
         }
 
         /// <summary>

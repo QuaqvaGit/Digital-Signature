@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
 using System.Security.Cryptography;
 
 namespace Crypto_App.Model.Numeric_Works
@@ -41,6 +42,12 @@ namespace Crypto_App.Model.Numeric_Works
             return x;
 
         }
+
+        /// <summary>
+        /// Метод генерации случайного BigInteger
+        /// </summary>
+        /// <param name="bits">Количество бит в числе</param>
+        /// <returns>Случайное число</returns>
         public static BigInteger RandBigInt(int bits)
         {
             RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
@@ -49,6 +56,19 @@ namespace Crypto_App.Model.Numeric_Works
             bytes[bytes.Length - 1] = 0;
             BigInteger result = new BigInteger(bytes);
             return result;
+        }
+
+        /// <summary>
+        /// Метод генерации первообразного корня числа
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns>Первообразный корень числа</returns>
+        public static BigInteger GeneratePrimitiveRoot(BigInteger p)
+        {
+            BigInteger g = 0;
+            while (g == 1 || g == p - 1 || BigInteger.ModPow(g, (p-1)/2, p) == 1)
+                g = RandBigInt((int)Math.Floor(BigInteger.Log(p, 2)));
+            return g;
         }
     }
 }
