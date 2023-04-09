@@ -15,13 +15,13 @@ namespace Crypto_App.ViewModel
             switch(typeOfEncryptor)
             {
                 case 0:
-                    _signer = new RSA_Signer();
+                    _signer = new RSA_Signer(true);
                     break;
                 case 1:
-                    _signer = new EGSA_Signer();
+                    _signer = new EGSA_Signer(true);
                     break;
                 case 2:
-                    _signer = new DSA_Signer(message);
+                    _signer = new DSA_Signer(message, true);
                     break;
             }
             _message = message;

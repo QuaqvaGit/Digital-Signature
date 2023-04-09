@@ -10,19 +10,24 @@ namespace Crypto_App.Model.Encryptors
         public List<BigInteger> PrivateKey { get; }
         public List<BigInteger> PublicKey { get; }
 
-        public EGSA_Signer()
+        public EGSA_Signer(bool generateKeys)
         {
+            PublicKey = new List<BigInteger>();
+            PrivateKey = new List<BigInteger>();
             //Генерация ключей
-            BigInteger p = Primes.GenerateRandomPrime(MAX_BITS),
+            if (generateKeys)
+            {
+                BigInteger p = Primes.GenerateRandomPrime(MAX_BITS),
                 g = BigInts.GeneratePrimitiveRoot(p),
                 x = BigInts.RandBigInt(Primes.random.Next(2, BigInts.GetBits(p))),
                 y = BigInteger.ModPow(g, x, p);
-            PublicKey = new List<BigInteger>();
-            PublicKey.Add(y);
-            PublicKey.Add(g);
-            PublicKey.Add(p);
-            PrivateKey = new List<BigInteger>();
-            PrivateKey.Add(x);
+                
+                PublicKey.Add(y);
+                PublicKey.Add(g);
+                PublicKey.Add(p);
+                PrivateKey.Add(x);
+            }
+            
         }
 
         /// <summary>
@@ -55,7 +60,7 @@ namespace Crypto_App.Model.Encryptors
             return keys[0] > 0 && keys[0] < keys[4] && keys[1] > 0 && keys[1] < keys[4] - 1
                 && BigInteger.ModPow(keys[2], keys[0], keys[4]) * 
                 BigInteger.ModPow(keys[0], keys[1], keys[4]) % keys[4] ==
-                BigInteger.ModPow(keys[3], hash, keys[4]);
+                BigInteger.ModPow(keys[3], BigInteger.Abs(hash), keys[4]);
         }
     }
 }

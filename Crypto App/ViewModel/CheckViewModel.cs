@@ -30,14 +30,14 @@ namespace Crypto_App.ViewModel
             {
                 case 0:
                     {
-                        _signer = new RSA_Signer();
+                        _signer = new RSA_Signer(false);
                         BigInteger _sign = BigInteger.Parse(sign);
                         keys.Insert(0, _sign);
                         break;
                     }
                 case 1:
                     {
-                        _signer = new EGSA_Signer();
+                        _signer = new EGSA_Signer(false);
                         List<BigInteger> _sign = ParseInput(sign);
                         _sign.AddRange(keys);
                         keys = _sign;
@@ -45,7 +45,7 @@ namespace Crypto_App.ViewModel
                     }
                 case 2:
                     {
-                        _signer = new DSA_Signer(message);
+                        _signer = new DSA_Signer(message, false);
                         List<BigInteger> _sign = ParseInput(sign);
                         keys.AddRange(_sign);
                         break;

@@ -10,26 +10,29 @@ namespace Crypto_App.Model.Encryptors
     {
         public List<BigInteger> PublicKey { get; }
         public List<BigInteger> PrivateKey { get; }
-        public DSA_Signer(string message) { 
+        public DSA_Signer(string message, bool generateKeys) { 
             PublicKey = new List<BigInteger>();
             PrivateKey = new List<BigInteger>();
 
-            BigInteger hash = message.GetHashCode();
-            int bits = BigInts.GetBits(hash);
-            BigInteger q = Primes.GenerateRandomPrime(bits),
-                       p = 2*q+1;
-            int n = 3;
-            while (!Primes.IsMillerRabinPassed(p))
+            if (generateKeys)
             {
-                p = n * q + 1;
-                n++;
-            }
-            BigInteger h = Primes.GenerateRandomPrime(Primes.random.Next(2, BigInts.GetBits(p - 1))),
-                       g = BigInteger.ModPow(h, (p - 1) / q, p),
-                       x = Primes.GenerateRandomPrime(Primes.random.Next(1, BigInts.GetBits(q))),
-                       y = BigInteger.ModPow(g, x, p);
-            PrivateKey.Add(x);
-            PublicKey.AddRange(new BigInteger[] { p, q, g, y });
+                BigInteger hash = message.GetHashCode();
+                int bits = BigInts.GetBits(hash);
+                BigInteger q = Primes.GenerateRandomPrime(bits),
+                           p = 2 * q + 1;
+                int n = 3;
+                while (!Primes.IsMillerRabinPassed(p))
+                {
+                    p = n * q + 1;
+                    n++;
+                }
+                BigInteger h = Primes.GenerateRandomPrime(Primes.random.Next(2, BigInts.GetBits(p - 1))),
+                           g = BigInteger.ModPow(h, (p - 1) / q, p),
+                           x = Primes.GenerateRandomPrime(Primes.random.Next(1, BigInts.GetBits(q))),
+                           y = BigInteger.ModPow(g, x, p);
+                PrivateKey.Add(x);
+                PublicKey.AddRange(new BigInteger[] { p, q, g, y });
+            }   
         }
 
         public List<BigInteger> Sign(string message)
